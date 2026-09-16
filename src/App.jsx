@@ -1,29 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 const App = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:8000/products');
-        if (!res.ok) throw new Error('Failed to fetch products');
-        const data = await res.json();
-        console.log(data);
-        setProducts(data);
+        const res = await fetch('http://localhost:8000/products')
+        if (!res.ok) throw new Error('Failed to fetch products')
+        const data = await res.json()
+        console.log(data)
+        setProducts(data)
       } catch (err) {
-        setError(err.message);
+        setError(err.message)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchProducts();
-  }, []);
+    fetchProducts()
+  }, [])
 
-  return <div>Shopping Cart UI</div>;
-};
+  return (
+    <div className="min-h-screen">
+      <h1 className="text-3xl font-bold mb-6">Product Catalog</h1>
+      {loading && <p>Loading...</p>}
+      {error && <div className="error">{error.message}</div>}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        {products.map((product) => (
+          <div key={product.id}>{product.name}</div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
-export default App;
+export default App
