@@ -30,7 +30,20 @@ const App = () => {
       {error && <div className="error">{error.message}</div>}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {products.map((product) => (
-          <div key={product.id}>{product.name}</div>
+          <div
+            key={product.id}
+            className="bg-white rounded-lg shadow p-4 flex flex-col"
+          >
+            <div className="h-40 overflow-hidden">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-40 object-cover rounded mb-4"
+              />
+            </div>
+            <h2 className="text-xl font-semibold">{product.name}</h2>
+            <p className="text-gray-500 text-sm mb-2">{product.description}</p>
+          </div>
         ))}
       </div>
     </div>
