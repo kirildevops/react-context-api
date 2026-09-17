@@ -1,9 +1,8 @@
-import { useContext } from 'react'
 import ProductCard from './ProductCard'
-import { ProductContext } from '../context/ProductContext'
+import { useProducts } from '../context/ProductContext'
 
 const ProductList = () => {
-  const { products, loading, error } = useContext(ProductContext)
+  const { products, loading, error } = useProducts()
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       {loading && <p>Loading</p>}

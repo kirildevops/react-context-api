@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useEffect, useContext } from 'react'
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const ProductContext = createContext()
 
 export function ProductProvider({ children }) {
@@ -33,6 +33,6 @@ export function ProductProvider({ children }) {
   )
 }
 
-// export function useProducts() {
-
-// }
+export function useProducts() {
+  return useContext(ProductContext)
+}
