@@ -8,7 +8,7 @@ const App = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:8000/products')
+        const res = await fetch('/api/products')
         if (!res.ok) throw new Error('Failed to fetch products')
         const data = await res.json()
         console.log(data)
@@ -27,7 +27,7 @@ const App = () => {
     <div className="min-h-screen">
       <h1 className="text-3xl font-bold mb-6">Product Catalog</h1>
       {loading && <p>Loading...</p>}
-      {error && <div className="error">{error.message}</div>}
+      {error && <div className="error">{error}</div>}
       <ProductList products={products} />
     </div>
   )
