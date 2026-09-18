@@ -18,7 +18,15 @@ export function CartProvider({ children }) {
     })
   }
 
-  return <CartContext value={{ cart, addToCart }}>{children}</CartContext>
+  const removeFromCart = (product) => {
+    setCart((prev) => prev.filter((item) => item.id !== product.id))
+  }
+
+  return (
+    <CartContext value={{ cart, addToCart, removeFromCart }}>
+      {children}
+    </CartContext>
+  )
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
